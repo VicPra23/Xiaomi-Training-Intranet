@@ -64,7 +64,11 @@ function renderCalendar(container) {
                 </div>
             </header>
 
-            <div id="calendarTableContainer" style="overflow-x:auto;">
+            <div class="calendar-scroll-shell">
+                <div class="calendar-scroll-hint">
+                    <i data-lucide="move-horizontal" style="width:14px;"></i> Desliza lateralmente para ver los días
+                </div>
+                <div id="calendarTableContainer" class="calendar-table-scroller">
                 <table class="calendar-weekly">
                     <thead>
                         <tr id="tableHeader">
@@ -73,6 +77,7 @@ function renderCalendar(container) {
                     </thead>
                     <tbody id="tableBody"></tbody>
                 </table>
+                </div>
             </div>
             <div id="loadingOverlay" style="text-align:center; padding:2rem; display:none;">
                 <div class="loader"></div>
@@ -82,6 +87,7 @@ function renderCalendar(container) {
     `;
 
     container.innerHTML = html;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     
     // Set current month/year in jump menus
     document.getElementById('jumpMonth').value = currentMonday.getMonth();
